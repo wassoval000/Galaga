@@ -1,4 +1,4 @@
-import java.awt.*;implement java.awt.*;
+import java.awt.*;
 
 public interface Move {
 
