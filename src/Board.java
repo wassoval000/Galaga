@@ -32,6 +32,12 @@ public class Board extends JPanel implements ActionListener {
 
     }
 
+    public void checkCollisions(){
+
+
+
+    }
+
     public void setPlayerPos(int x, int y){
 
         sprites.get(0).setPosition(x,y);
