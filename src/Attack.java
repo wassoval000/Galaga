@@ -3,7 +3,8 @@ import java.awt.*;
 public class Attack extends Sprite {
 
     static long time = System.currentTimeMillis();
-    static int LRSPEED = 5;
+    static int LRSPEED = 8;
+    static int UDSPEED = 8;
 
     public Attack(Color color, int x, int y, int width, int height){
 
@@ -21,7 +22,9 @@ public class Attack extends Sprite {
 
     public void move(int boardHeight, int boardWidth){
 
-        while(time < 5000){
+        long changeTime = System.currentTimeMillis()-time;
+        if(changeTime < 5000){
+            x += LRSPEED;
             if(x>boardWidth){
                 LRSPEED *= -1;
             }
@@ -29,6 +32,15 @@ public class Attack extends Sprite {
                 LRSPEED *= -1;
             }
 
+        }
+        if(changeTime < 10000 && changeTime > 5000){
+            y += UDSPEED;
+            if(y>700){
+             UDSPEED *= -1;
+            }
+            if(y<boardHeight){
+                UDSPEED *= -1;
+            }
         }
 
     }
