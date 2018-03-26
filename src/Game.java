@@ -5,7 +5,7 @@ import java.awt.event.*;
 public class Game extends JFrame {
 
     Board board;
-    boolean leftPressed, rightPressed, spacePressed;
+    static boolean leftPressed, rightPressed, spacePressed;
 
     public Game(){
 
@@ -29,6 +29,7 @@ public class Game extends JFrame {
                 }
                 if(e.getKeyCode() == KeyEvent.VK_SPACE){
                     spacePressed = true;
+                    board.laser();
                 }
             }
 
@@ -56,15 +57,15 @@ public class Game extends JFrame {
 
    }
 
-   public boolean isLeftPressed(){
+   public static boolean isLeftPressed(){
         return leftPressed;
    }
 
-   public boolean isRightPressed(){
+   public static boolean isRightPressed(){
         return rightPressed;
    }
 
-   public boolean isSpacePressed(){
+   public static boolean isSpacePressed(){
         return spacePressed;
    }
 

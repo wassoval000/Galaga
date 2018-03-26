@@ -9,10 +9,15 @@ public class Board extends JPanel implements ActionListener {
 
     Timer timer;
     List<Sprite> sprites = new ArrayList<Sprite>();
+    final int attackCount = 15;
 
     public void setup(){
 
         sprites.add(0, new Player (Color.lightGray, getWidth()/2, getHeight()/2, 18));
+
+        for(int i = 0; i < attackCount; i++){
+            sprites.add(new Attack(Color.CYAN, getWidth()/2, getHeight()/2, 10, 10));
+        }
 
     }
 
@@ -49,7 +54,7 @@ public class Board extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        for(int i = 1; i < sprites.size(); i++){
+        for(int i = 0; i < sprites.size(); i++){
 
             sprites.get(i).move(getHeight(),getWidth());
 

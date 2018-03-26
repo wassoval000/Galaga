@@ -3,7 +3,7 @@ import java.awt.*;
 public class Laser extends Sprite {
 
     boolean hitEdge;
-    Game game;
+    boolean laserMove = false;
 
     public Laser(Color color, int x, int y, int width, int height){
 
@@ -26,13 +26,16 @@ public class Laser extends Sprite {
 
     public void move(int boardWidth, int boardHeight){
 
-        if(game.isSpacePressed()){
+        if(Game.isSpacePressed()){
 
+            y -= 5;
             if(y < 0){
                 hitEdge = true;
+                laserMove = false;
             }
             if(y > boardHeight){
                 hitEdge = false;
+                laserMove = false;
             }
 
         }
