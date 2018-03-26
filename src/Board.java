@@ -12,7 +12,7 @@ public class Board extends JPanel implements ActionListener {
 
     public void setup(){
 
-        sprites.add(0, new Player (Color.lightGray, getWidth()/2, getHeight()/2, 12));
+        sprites.add(0, new Player (Color.lightGray, getWidth()/2, getHeight()/2, 18));
 
     }
 
@@ -24,10 +24,9 @@ public class Board extends JPanel implements ActionListener {
 
     public void paintComponent(Graphics g){
 
-        super.paintComponent(Graphics g){
-
-
-
+        super.paintComponent(g);
+        for(int i = 0; i < sprites.size(); i++){
+            sprites.get(i).paint(g);
         }
 
     }
@@ -43,7 +42,14 @@ public class Board extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        for(int i = 1; i < sprites.size(); i++){
+
+            sprites.get(i).move(getHeight(),getWidth());
+
+        }
         repaint();
+
     }
 
 

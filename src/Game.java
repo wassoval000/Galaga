@@ -1,11 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 public class Game extends JFrame {
 
     Board board;
+    boolean leftPressed = false;
+    boolean rightPressed = false;
 
     public Game(){
 
@@ -17,11 +18,27 @@ public class Game extends JFrame {
         add(board);
         pack();
         setLocationRelativeTo(null);
-        addMouseListener(new MouseAdapter(){
+        addKeyListener(new KeyAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if(e.getKeyCode() == KeyEvent.VK_LEFT){
+                    leftPressed = true;
+                }
+                if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+                    rightPressed = true;
+                }
+            }
 
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                if(e.getKeyCode() == KeyEvent.VK_LEFT){
+                    leftPressed = false;
+                }
+                if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+                    rightPressed = false;
+                }
             }
         });
 
@@ -32,6 +49,14 @@ public class Game extends JFrame {
         Game game = new Game();
         game.board.setup();
 
+   }
+
+   public boolean isLeftPressed(){
+        return leftPressed;
+   }
+
+   public boolean isRightPressed(){
+        return rightPressed;
    }
 
 }
