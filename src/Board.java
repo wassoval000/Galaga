@@ -10,13 +10,24 @@ public class Board extends JPanel implements ActionListener {
     Timer timer;
     List<Sprite> sprites = new ArrayList<Sprite>();
     final int attackCount = 15;
+    private long current, last;
+    int [] xArray = new int[15];
+    int [] yArray = new int[15];
 
     public void setup(){
 
-        sprites.add(0, new Player (Color.lightGray, getWidth()/2, getHeight()/2, 18));
+        for(int i = 0; i < xArray.length; i++){
+            xArray[i] = (int)(Math.random()*700);
+        }
+
+        for(int i = 0; i < yArray.length; i++){
+            yArray[i] = (int)(Math.random()*300);
+        }
+
+        sprites.add(0, new Player (Color.lightGray, getWidth()/2, 600, 60));
 
         for(int i = 0; i < attackCount; i++){
-            sprites.add(new Attack(Color.CYAN, getWidth()/2, getHeight()/2, 10, 10));
+            sprites.add(new Attack(Color.RED, xArray[i], yArray[i], 30, 30));
         }
 
     }
@@ -47,7 +58,11 @@ public class Board extends JPanel implements ActionListener {
 
     public void laser(){
 
-        sprites.add(new Laser(Color.GREEN, sprites.get(0).x, sprites.get(0).y, 5, 7));
+        current  = System.currentTimeMillis();
+        if((current - last) > 350){
+            sprites.add(new Laser(Color.GREEN, sprites.get(0).x, sprites.get(0).y, 8, 20));
+            last = System.currentTimeMillis();
+        }
 
     }
 

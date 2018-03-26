@@ -26,8 +26,6 @@ public class Laser extends Sprite {
 
     public void move(int boardWidth, int boardHeight){
 
-        if(Game.isSpacePressed()){
-
             y -= 5;
             if(y < 0){
                 hitEdge = true;
@@ -37,8 +35,6 @@ public class Laser extends Sprite {
                 hitEdge = false;
                 laserMove = false;
             }
-
-        }
 
     }
 
