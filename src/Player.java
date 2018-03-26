@@ -19,7 +19,7 @@ public class Player extends Sprite{
 
     }
 
-    public void move(){
+    public void move(int boardHeight,int boardWidth){
 
         if(game.isLeftPressed()){
             x -= 5;
