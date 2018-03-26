@@ -40,6 +40,12 @@ public class Board extends JPanel implements ActionListener {
 
     }
 
+    public void laser(){
+
+        sprites.add(new Laser(Color.GREEN, sprites.get(0).x, sprites.get(0).y, 5, 7));
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 

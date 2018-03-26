@@ -5,8 +5,7 @@ import java.awt.event.*;
 public class Game extends JFrame {
 
     Board board;
-    boolean leftPressed = false;
-    boolean rightPressed = false;
+    boolean leftPressed, rightPressed, spacePressed;
 
     public Game(){
 
@@ -28,6 +27,9 @@ public class Game extends JFrame {
                 if(e.getKeyCode() == KeyEvent.VK_RIGHT){
                     rightPressed = true;
                 }
+                if(e.getKeyCode() == KeyEvent.VK_SPACE){
+                    spacePressed = true;
+                }
             }
 
             @Override
@@ -38,6 +40,9 @@ public class Game extends JFrame {
                 }
                 if(e.getKeyCode() == KeyEvent.VK_RIGHT){
                     rightPressed = false;
+                }
+                if(e.getKeyCode() == KeyEvent.VK_SPACE){
+                    spacePressed = false;
                 }
             }
         });
@@ -57,6 +62,10 @@ public class Game extends JFrame {
 
    public boolean isRightPressed(){
         return rightPressed;
+   }
+
+   public boolean isSpacePressed(){
+        return spacePressed;
    }
 
 }

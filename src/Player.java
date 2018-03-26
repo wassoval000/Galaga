@@ -19,6 +19,7 @@ public class Player extends Sprite{
 
     }
 
+    @Override
     public void move(int boardHeight,int boardWidth){
 
         if(game.isLeftPressed()){
