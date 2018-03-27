@@ -13,6 +13,7 @@ public class Board extends JPanel implements ActionListener {
     private long current, last;
     int [] xArray = new int[15];
     int [] yArray = new int[15];
+    static long lives = 0;
 
     public void setup(){
 
@@ -42,10 +43,16 @@ public class Board extends JPanel implements ActionListener {
                         if(sprites.get(i) instanceof Laser && sprites.get(j) instanceof Attack){
                             sprites.remove(i);
                             sprites.remove(j);
+                            break;
                         }
-                        if(sprites.get(i) instanceof Player && sprites.get(j) instanceof Attack){
+                        else if(sprites.get(i) instanceof Player && sprites.get(j) instanceof Attack){
                             sprites.remove(i);
                             sprites.remove(j-1);
+                            lives += 1;
+                            if(lives%3==0){
+                                Screens.end();
+                            }
+                            break;
                         }
                     }
                 }
@@ -64,6 +71,12 @@ public class Board extends JPanel implements ActionListener {
         super.paintComponent(g);
         for(int i = 0; i < sprites.size(); i++){
             sprites.get(i).paint(g);
+        }
+
+        if(Screens.end()==true){
+            for(int i = 0; i < sprites.size(); i++){
+                sprites.remove(i);
+            }
         }
 
     }
