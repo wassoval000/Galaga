@@ -38,21 +38,12 @@ public class Board extends JPanel implements ActionListener {
         for(int i = 0; i < sprites.size(); i++) {
             for (int j = 0; j < sprites.size(); j++) {
                 if (i != j) {
-                    if (sprites.get(i).intersects(sprites.get(j))) {
-                        if (sprites.get(i) instanceof Attack && sprites.get(j) instanceof Attack) {
-                            sprites.get(i).bounce();
-                            sprites.get(j).bounce();
-
-                        }
-                    }
-                    if (sprites.get(i).intersects(sprites.get(j))) {
-                        if (sprites.get(i) instanceof Attack && sprites.get(j) instanceof Laser) {
+                    if(sprites.get(i).intersects(sprites.get(j))){
+                        if(sprites.get(i) instanceof Laser && sprites.get(j) instanceof Attack){
                             sprites.remove(i);
                             sprites.remove(j);
                         }
-                    }
-                    if (sprites.get(i).intersects(sprites.get(j))) {
-                        if (sprites.get(i) instanceof Laser && sprites.get(j) instanceof Attack) {
+                        if(sprites.get(i) instanceof Player && sprites.get(j) instanceof Attack){
                             sprites.remove(i);
                             sprites.remove(j);
                         }
@@ -98,6 +89,8 @@ public class Board extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        checkCollisions();
 
         for(int i = 0; i < sprites.size(); i++){
 

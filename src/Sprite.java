@@ -24,7 +24,7 @@ public class Sprite implements Move, Paint{
 
     @Override
     public Rectangle getBounds() {
-        return null;
+        return new Rectangle(x, y, width, height);
     }
 
     @Override
