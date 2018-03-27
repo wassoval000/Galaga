@@ -38,14 +38,14 @@ public class Board extends JPanel implements ActionListener {
         for(int i = 0; i < sprites.size(); i++) {
             for (int j = 0; j < sprites.size(); j++) {
                 if (i != j) {
-                    if(sprites.get(i).intersects(sprites.get(j))){
+                    if(sprites.get(i).getBounds().intersects(sprites.get(j).getBounds())){
                         if(sprites.get(i) instanceof Laser && sprites.get(j) instanceof Attack){
                             sprites.remove(i);
                             sprites.remove(j);
                         }
                         if(sprites.get(i) instanceof Player && sprites.get(j) instanceof Attack){
                             sprites.remove(i);
-                            sprites.remove(j);
+                            sprites.remove(j-1);
                         }
                     }
                 }
