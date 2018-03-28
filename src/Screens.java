@@ -6,8 +6,14 @@ public class Screens {
 
     }
 
-    public static boolean end(){
+    public static boolean isEnd(){
         return end;
+    }
+
+    public static void end(){
+
+        end = true;
+
     }
 
 }

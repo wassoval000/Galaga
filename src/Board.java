@@ -46,7 +46,6 @@ public class Board extends JPanel implements ActionListener {
                             break;
                         }
                         else if(sprites.get(i) instanceof Player && sprites.get(j) instanceof Attack){
-                            sprites.remove(i);
                             sprites.remove(j-1);
                             lives += 1;
                             if(lives%3==0){
@@ -73,7 +72,7 @@ public class Board extends JPanel implements ActionListener {
             sprites.get(i).paint(g);
         }
 
-        if(Screens.end()==true){
+        if(Screens.isEnd()){
             for(int i = 0; i < sprites.size(); i++){
                 sprites.remove(i);
             }
