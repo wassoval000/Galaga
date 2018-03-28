@@ -47,10 +47,7 @@ public class Board extends JPanel implements ActionListener {
                         }
                         else if(sprites.get(i) instanceof Player && sprites.get(j) instanceof Attack){
                             sprites.remove(j-1);
-                            lives += 1;
-                            if(lives%3==0){
-                                Screens.end();
-                            }
+                            Screens.end();
                             break;
                         }
                     }
