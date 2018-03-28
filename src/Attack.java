@@ -32,7 +32,7 @@ public class Attack extends Sprite {
         if(moving){
             x += LRSPEED;
             if (x > boardWidth) {
-                x -= 10;
+                x -= 20;
                 LRSPEED *= -1;
             }
             if (x < 0) {

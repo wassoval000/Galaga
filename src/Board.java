@@ -9,7 +9,7 @@ public class Board extends JPanel implements ActionListener {
 
     Timer timer;
     List<Sprite> sprites = new ArrayList<Sprite>();
-    final int attackCount = 15;
+    int attackCount = 15;
     private long current, last;
     int [] xArray = new int[15];
     int [] yArray = new int[15];
@@ -35,25 +35,29 @@ public class Board extends JPanel implements ActionListener {
 
     public void checkCollisions(){
 
-
-        for(int i = 0; i < sprites.size(); i++) {
-            for (int j = 0; j < sprites.size(); j++) {
-                if (i != j) {
-                    if(sprites.get(i).getBounds().intersects(sprites.get(j).getBounds())){
-                        if(sprites.get(i) instanceof Laser && sprites.get(j) instanceof Attack){
-                            sprites.remove(i);
-                            sprites.remove(j);
-                            break;
-                        }
-                        else if(sprites.get(i) instanceof Player && sprites.get(j) instanceof Attack){
-                            sprites.remove(j-1);
-                            Screens.end();
-                            break;
+            for(int i = 0; i < sprites.size(); i++) {
+                for (int j = 0; j < sprites.size(); j++) {
+                    if (i != j) {
+                        if(sprites.get(i).getBounds().intersects(sprites.get(j).getBounds())){
+                            if(sprites.get(i) instanceof Laser && sprites.get(j) instanceof Attack){
+                                sprites.remove(i);
+                                sprites.remove(j);
+                                attackCount -= 1;
+                                if(attackCount == 0){
+                                    Screens.end();
+                                }
+                                break;
+                            }
+                            else if(sprites.get(i) instanceof Player && sprites.get(j) instanceof Attack){
+                                sprites.remove(j-1);
+                                Screens.end();
+                                break;
+                            }
                         }
                     }
                 }
             }
-        }
+
     }
 
     public void setPlayerPos(int x, int y){

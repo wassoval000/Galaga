@@ -30,7 +30,7 @@ public class Player extends Sprite{
         }
         if(x > boardWidth || x < 0){
             if(x > boardWidth){
-                x -= 10;
+                x -= 40;
             }
             if(x < 0){
                 x += 10;
