@@ -31,6 +31,30 @@ public class Game extends JFrame {
                     spacePressed = true;
                     board.laser();
                 }
+                if(e.getKeyCode()==KeyEvent.VK_1){
+                    if(Screens.isStart()){
+                        Screens.game();
+                        Attack.LRSPEED = 6;
+                        Attack.UDSPEED = 6;
+                        Board.lives = 3;
+                    }
+                }
+                if(e.getKeyCode()==KeyEvent.VK_2){
+                    if(Screens.isStart()){
+                        Screens.game();
+                        Attack.LRSPEED = 8;
+                        Attack.UDSPEED = 8;
+                        Board.lives = 2;
+                    }
+                }
+                if(e.getKeyCode()==KeyEvent.VK_3){
+                    if(Screens.isStart()){
+                        Screens.game();
+                        Attack.LRSPEED = 10;
+                        Attack.UDSPEED = 10;
+                        Board.lives = 1;
+                    }
+                }
             }
 
             @Override
@@ -52,8 +76,8 @@ public class Game extends JFrame {
 
     public static void main(String[] args){
 
-        Game game = new Game();
-        game.board.setup();
+            Game game = new Game();
+            game.board.setup();
 
    }
 

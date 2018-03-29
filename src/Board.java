@@ -13,10 +13,15 @@ public class Board extends JPanel implements ActionListener {
     private long current, last;
     int [] xArray = new int[15];
     int [] yArray = new int[15];
-    static long lives = 0;
+    static int lives = 3;
+    final int starsCount = 100;
 
     public void setup(){
 
+        Screens.start();
+        for(int i = 0; i < starsCount; i++){
+            sprites.add(new Stars(Color.white, getWidth()/2,getHeight()/2,10));
+        }
         for(int i = 0; i < xArray.length; i++){
             xArray[i] = (int)(Math.random()*700);
         }
@@ -50,7 +55,7 @@ public class Board extends JPanel implements ActionListener {
                             }
                             else if(sprites.get(i) instanceof Player && sprites.get(j) instanceof Attack){
                                 sprites.remove(j-1);
-                                Screens.end();
+                                Screens.lose();
                                 break;
                             }
                         }
@@ -69,15 +74,51 @@ public class Board extends JPanel implements ActionListener {
     public void paintComponent(Graphics g){
 
         super.paintComponent(g);
-        for(int i = 0; i < sprites.size(); i++){
-            sprites.get(i).paint(g);
+        setBackground(Color.BLACK);
+
+        if(Screens.isGame()){
+            super.paintComponent(g);
+            for(int i = 0; i < sprites.size(); i++){
+                sprites.get(i).paint(g);
+            }
         }
 
         if(Screens.isEnd()){
             for(int i = 0; i < sprites.size(); i++){
                 sprites.remove(i);
             }
+            g.setColor(Color.GREEN);
+            g.setFont(new Font("Serif",Font.BOLD,46));
+            printString("YOU WON :)", getWidth(), 0, (int)getHeight()/3, g);
         }
+
+        if(Screens.isLose()){
+            for(int i = 0; i < sprites.size(); i++){
+                sprites.remove(i);
+            }
+            g.setColor(Color.RED);
+            g.setFont(new Font("Serif",Font.BOLD,46));
+            printString("YOU LOSE :(", getWidth(), 0, (int)getHeight()/3, g);
+        }
+
+        if(Screens.isStart()){
+            g.setColor(Color.CYAN);
+            g.setFont(new Font("Serif",Font.BOLD,46));
+            printString("GALAGA", getWidth(), 0, (int)getHeight()/3, g);
+            g.setColor(Color.MAGENTA);
+            g.setFont(new Font("Serif",Font.BOLD,36));
+            printString("PRESS 1 to Play Easy", getWidth(), 0, 450, g);
+            printString("2 for Medium", getWidth(), 0, 550, g);
+            printString("3 for Hard", getWidth(), 0, 650, g);
+        }
+
+    }
+
+    private void printString(String s, int width, int x, int y, Graphics g){
+
+        int length = (int)g.getFontMetrics().getStringBounds(s,g).getWidth();
+        int start = width/2-length/2;
+        g.drawString(s,start+x,y);
 
     }
 
