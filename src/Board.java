@@ -19,9 +19,6 @@ public class Board extends JPanel implements ActionListener {
     public void setup(){
 
         Screens.start();
-        for(int i = 0; i < starsCount; i++){
-            sprites.add(new Stars(Color.white, getWidth()/2,getHeight()/2,10));
-        }
         for(int i = 0; i < xArray.length; i++){
             xArray[i] = (int)(Math.random()*700);
         }
@@ -54,8 +51,12 @@ public class Board extends JPanel implements ActionListener {
                                 break;
                             }
                             else if(sprites.get(i) instanceof Player && sprites.get(j) instanceof Attack){
-                                sprites.remove(j-1);
-                                Screens.lose();
+                                sprites.remove(j);
+                                lives-=1;
+                                if(lives==0) {
+                                    Screens.lose();
+                                    lives=3;
+                                }
                                 break;
                             }
                         }
@@ -135,7 +136,7 @@ public class Board extends JPanel implements ActionListener {
 
         current  = System.currentTimeMillis();
         if((current - last) > 350){
-            sprites.add(new Laser(Color.GREEN, sprites.get(0).x, sprites.get(0).y, 8, 20));
+             sprites.add(new Laser(Color.GREEN, sprites.get(0).x, sprites.get(0).y, 8, 20));
             last = System.currentTimeMillis();
         }
 
