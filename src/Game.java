@@ -34,6 +34,7 @@ public class Game extends JFrame {
                 if(e.getKeyCode()==KeyEvent.VK_1){
                     if(Screens.isStart()){
                         Screens.game();
+                        Board.setup();
                         Attack.LRSPEED = 6;
                         Attack.UDSPEED = 6;
                         Board.lives = 3;
@@ -42,6 +43,7 @@ public class Game extends JFrame {
                 if(e.getKeyCode()==KeyEvent.VK_2){
                     if(Screens.isStart()){
                         Screens.game();
+                        Board.setup();
                         Attack.LRSPEED = 8;
                         Attack.UDSPEED = 8;
                         Board.lives = 2;
@@ -50,6 +52,7 @@ public class Game extends JFrame {
                 if(e.getKeyCode()==KeyEvent.VK_3){
                     if(Screens.isStart()){
                         Screens.game();
+                        Board.setup();
                         Attack.LRSPEED = 10;
                         Attack.UDSPEED = 10;
                         Board.lives = 1;
@@ -85,6 +88,7 @@ public class Game extends JFrame {
     public static void main(String[] args){
 
             Game game = new Game();
+            Screens.start();
             game.board.setup();
 
    }

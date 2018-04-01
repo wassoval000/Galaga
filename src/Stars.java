@@ -1,8 +1,6 @@
-public class Stars {
+public class Stars{
 
     public Stars(){
-
-
 
     }
 

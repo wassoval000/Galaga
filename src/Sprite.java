@@ -34,6 +34,7 @@ public class Sprite implements Move, Paint{
 
     public void bounce(){
 
+        dx *= -1;
         dy *= -1;
 
     }

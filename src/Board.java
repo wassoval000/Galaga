@@ -7,26 +7,24 @@ import java.util.List;
 
 public class Board extends JPanel implements ActionListener {
 
-    Timer timer;
-    List<Sprite> sprites = new ArrayList<Sprite>();
-    int attackCount = 15;
+    static Timer timer;
+    static List<Sprite> sprites = new ArrayList<Sprite>();
+    static int attackCount = 15;
     private long current, last;
-    int [] xArray = new int[15];
-    int [] yArray = new int[15];
+    static int [] xArray = new int[15];
+    static int [] yArray = new int[15];
     static int lives = 3;
     static String livesCount = "";
-    final int EDGE = 45;
+    static final int EDGE = 45;
 
-    public void setup(){
+    public static void setup(){
 
         if(Screens.isLose()||Screens.isEnd()){
-            if(sprites.size()!=0){
-                for(int i = 0; i < sprites.size(); i++){
-                    sprites.remove(i);
-                }
+            while(sprites.size()!=0){
+                sprites.remove(0);
             }
         }
-        Screens.start();
+        attackCount = 15;
         for(int i = 0; i < xArray.length; i++){
             xArray[i] = (int)(Math.random()*700);
         }
@@ -35,9 +33,9 @@ public class Board extends JPanel implements ActionListener {
             yArray[i] = (int)(Math.random()*300);
         }
 
-        sprites.add(0, new Player (Color.lightGray, getWidth()/2, 600, 60));
+        sprites.add(0, new Player (Color.lightGray, 400, 600, 60));
 
-        for(int i = 0; i < attackCount; i++){
+        for(int i = 0; i < attackCount; i++) {
             sprites.add(new Attack(Color.RED, xArray[i], yArray[i], 30, 30));
         }
 
@@ -100,9 +98,14 @@ public class Board extends JPanel implements ActionListener {
             for(int i = 0; i < sprites.size(); i++){
                 sprites.remove(i);
             }
-            g.setColor(Color.GREEN);
+            g.setColor(Color.cyan);
             g.setFont(new Font("Serif",Font.BOLD,46));
             printString("YOU WON :)", getWidth(), 0, (int)getHeight()/3, g);
+            g.setFont(new Font("Serif",Font.BOLD,40));
+            g.setColor(Color.cyan);
+            printString("PRESS ENTER TO PLAY AGAIN <3",getWidth(),0,(int)(getHeight()/3)*2,g);
+            g.setColor(Color.pink);
+            printString("PRESS ENTER TO PLAY AGAIN <3",getWidth()+4,0,(int)((getHeight()/3)*2)+4,g);
         }
 
         if(Screens.isLose()){
@@ -112,6 +115,11 @@ public class Board extends JPanel implements ActionListener {
             g.setColor(Color.RED);
             g.setFont(new Font("Serif",Font.BOLD,46));
             printString("YOU LOSE :(", getWidth(), 0, (int)getHeight()/3, g);
+            g.setFont(new Font("Serif",Font.BOLD,40));
+            g.setColor(Color.lightGray);
+            printString("PRESS ENTER TO PLAY AGAIN",getWidth(),0,(int)(getHeight()/3)*2,g);
+            g.setColor(Color.red);
+            printString("PRESS ENTER TO PLAY AGAIN",getWidth()+4,0,(int)((getHeight()/3)*2)+4,g);
         }
 
         if(Screens.isStart()){
