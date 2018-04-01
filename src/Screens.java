@@ -28,6 +28,7 @@ public class Screens {
         game = true;
         start = false;
         end = false;
+        lose = false;
     }
 
     public static boolean isStart(){
@@ -38,6 +39,7 @@ public class Screens {
         start = true;
         game = false;
         end = false;
+        lose = false;
     }
 
     public static boolean isEnd(){
@@ -49,6 +51,7 @@ public class Screens {
         end = true;
         game = false;
         start = false;
+        lose = false;
 
     }
 

@@ -15,11 +15,17 @@ public class Board extends JPanel implements ActionListener {
     int [] yArray = new int[15];
     static int lives = 3;
     static String livesCount = "";
-    final int starsCount = 100;
     final int EDGE = 45;
 
     public void setup(){
 
+        if(Screens.isLose()||Screens.isEnd()){
+            if(sprites.size()!=0){
+                for(int i = 0; i < sprites.size(); i++){
+                    sprites.remove(i);
+                }
+            }
+        }
         Screens.start();
         for(int i = 0; i < xArray.length; i++){
             xArray[i] = (int)(Math.random()*700);
@@ -37,34 +43,34 @@ public class Board extends JPanel implements ActionListener {
 
     }
 
-    public void checkCollisions(){
+    public void checkCollisions() {
 
-            for(int i = 0; i < sprites.size(); i++) {
-                for (int j = 0; j < sprites.size(); j++) {
-                    if (i != j) {
-                        if(sprites.get(i).getBounds().intersects(sprites.get(j).getBounds())){
-                            if(sprites.get(i) instanceof Laser && sprites.get(j) instanceof Attack){
-                                sprites.remove(i);
-                                sprites.remove(j);
-                                attackCount -= 1;
-                                if(attackCount == 0){
-                                    Screens.end();
-                                }
-                                break;
+        for (int i = 0; i < sprites.size(); i++) {
+            for (int j = 0; j < sprites.size(); j++) {
+                if (i != j) {
+                    if (sprites.get(i).getBounds().intersects(sprites.get(j).getBounds())) {
+                        if (sprites.get(i) instanceof Laser && sprites.get(j) instanceof Attack) {
+                            sprites.remove(i);
+                            sprites.remove(j);
+                            attackCount -= 1;
+                            if (attackCount == 0) {
+                                Screens.end();
                             }
-                            else if(sprites.get(i) instanceof Player && sprites.get(j) instanceof Attack){
-                                sprites.remove(j);
-                                lives-=1;
-                                if(lives==0) {
-                                    Screens.lose();
-                                    lives=3;
-                                }
-                                break;
+                            break;
+                        } else if (sprites.get(i) instanceof Player && sprites.get(j) instanceof Attack) {
+                            sprites.remove(j);
+                            lives -= 1;
+                            attackCount -= 1;
+                            if (lives == 0) {
+                                Screens.lose();
+                                lives = 3;
                             }
+                            break;
                         }
                     }
                 }
             }
+        }
 
     }
 

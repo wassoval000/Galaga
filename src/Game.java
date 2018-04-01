@@ -55,6 +55,14 @@ public class Game extends JFrame {
                         Board.lives = 1;
                     }
                 }
+                if(e.getKeyCode()==KeyEvent.VK_ENTER){
+                    if(Screens.isEnd()){
+                        Screens.start();
+                    }
+                    else if(Screens.isLose()){
+                        Screens.start();
+                    }
+                }
             }
 
             @Override
@@ -75,7 +83,7 @@ public class Game extends JFrame {
     }
 
     public static void main(String[] args){
-        
+
             Game game = new Game();
             game.board.setup();
 
