@@ -14,7 +14,9 @@ public class Board extends JPanel implements ActionListener {
     int [] xArray = new int[15];
     int [] yArray = new int[15];
     static int lives = 3;
+    static String livesCount = "";
     final int starsCount = 100;
+    final int EDGE = 45;
 
     public void setup(){
 
@@ -82,6 +84,10 @@ public class Board extends JPanel implements ActionListener {
             for(int i = 0; i < sprites.size(); i++){
                 sprites.get(i).paint(g);
             }
+            toString(lives);
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("Serif", Font.PLAIN, 30));
+            printString(livesCount, (getWidth()*2)-(EDGE*5),0,getHeight()-EDGE,g);
         }
 
         if(Screens.isEnd()){
@@ -139,6 +145,22 @@ public class Board extends JPanel implements ActionListener {
              sprites.add(new Laser(Color.GREEN, sprites.get(0).x, sprites.get(0).y, 8, 20));
             last = System.currentTimeMillis();
         }
+
+    }
+
+    public static String toString(int lives){
+
+        if(lives==3){
+            livesCount = "Lives Left: 3";
+        }
+        else if(lives==2){
+            livesCount = "Lives Left: 2";
+        }
+        else if(lives==1){
+            livesCount = "Lives Left: 1";
+        }
+
+        return livesCount;
 
     }
 
