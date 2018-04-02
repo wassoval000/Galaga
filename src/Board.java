@@ -57,6 +57,9 @@ public class Board extends JPanel implements ActionListener {
                             sprites.remove(j);
                             lives -= 1;
                             attackCount -= 1;
+                            if(attackCount==0){
+                                Screens.end();
+                            }
                             if (lives == 0) {
                                 Screens.lose();
                                 lives = 3;
