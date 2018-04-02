@@ -36,6 +36,7 @@ public class Screens {
     }
 
     public static void start(){
+        Board.attackCount = 15;
         start = true;
         game = false;
         end = false;

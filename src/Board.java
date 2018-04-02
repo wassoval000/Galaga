@@ -24,7 +24,7 @@ public class Board extends JPanel implements ActionListener {
                 sprites.remove(0);
             }
         }
-        attackCount = 15;
+
         for(int i = 0; i < xArray.length; i++){
             xArray[i] = (int)(Math.random()*700);
         }
