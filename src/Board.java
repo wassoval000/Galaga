@@ -19,10 +19,8 @@ public class Board extends JPanel implements ActionListener {
 
     public static void setup(){
 
-        if(Screens.isLose()||Screens.isEnd()){
-            while(sprites.size()!=0){
-                sprites.remove(0);
-            }
+        while(sprites.size()!=0){
+            sprites.remove(0);
         }
 
         for(int i = 0; i < xArray.length; i++){
